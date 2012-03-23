@@ -39,12 +39,33 @@ func main() {
 
 	addr := args[0]
 
-	for _, path := range args[1:] {
-		run(addr, path)
+	tests := make([]expr, len(args[1:]))
+	for i, path := range args[1:] {
+		tests[i] = mustRead(path)
+	}
+
+	for _, t := range tests {
+		run(addr, t)
 	}
 }
 
-func run(addr, path string) {
+func run(addr string, t expr) {
+	var e env
+	e.tab = make(map[ident]val)
+	e.conn = mustDial(addr)
+	defer e.conn.Close()
+	t.eval(&e)
+}
+
+func mustDial(addr string) net.Conn {
+	c, err := net.Dial("tcp", addr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return c
+}
+
+func mustRead(path string) expr {
 	f, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -71,12 +92,5 @@ func run(addr, path string) {
 		log.Fatal("syntax errors")
 	}
 
-	var e env
-	e.tab = make(map[ident]val)
-	e.conn, err = net.Dial("tcp", addr)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	v.eval(&e)
+	return v
 }
