@@ -187,6 +187,12 @@ func (p *parser) atomParse() expr {
 		return intconv(lit)
 	case DOT:
 		return dot{}
+	case STRING:
+		s, err := strconv.Unquote(lit)
+		if err != nil {
+			p.error(off, err) // can't happen
+		}
+		return str(s)
 	case TSTART:
 		val, cont := tconv(lit)
 		var e expr = val
