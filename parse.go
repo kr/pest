@@ -16,7 +16,6 @@ type parser struct {
 	lit string
 	err []parserError
 	s   scanner
-	src []byte
 }
 
 type stmt struct {
@@ -25,7 +24,6 @@ type stmt struct {
 }
 
 func (p *parser) init(src []byte) {
-	p.src = src
 	p.s.init(src)
 	p.next()
 }
@@ -56,12 +54,12 @@ func (p *parser) stmtParse() expr {
 		p.next()
 		off := p.off
 		x := p.assignParse()
-		return recv{x, string(p.src[off:p.off])}
+		return recv{x, string(p.s.src[off:p.off])}
 	case TEST:
 		p.next()
 		off := p.off
 		x := p.assignParse()
-		return test{x, string(p.src[off:p.off])}
+		return test{x, string(p.s.src[off:p.off])}
 	}
 	return p.assignParse()
 }
