@@ -190,7 +190,7 @@ func (p *parser) atomParse() expr {
 	case STRING:
 		s, err := strconv.Unquote(lit)
 		if err != nil {
-			p.error(off, err) // can't happen
+			panic(err) // can't happen
 		}
 		return str(s)
 	case TSTART:
