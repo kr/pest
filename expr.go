@@ -117,6 +117,14 @@ func (q quo) eval(e *env) val {
 	return nil
 }
 
+type rem struct {
+	numerator, denominator expr
+}
+
+func (q rem) eval(e *env) val {
+	return nil
+}
+
 type ident string
 
 func (i ident) eval(e *env) val {

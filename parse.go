@@ -161,6 +161,10 @@ func (p *parser) termParse() expr {
 			p.next()
 			r := p.unaryParse()
 			e = quo{e, r}
+		case REM:
+			p.next()
+			r := p.unaryParse()
+			e = rem{e, r}
 		default:
 			return e
 		}
