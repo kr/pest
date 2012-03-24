@@ -60,13 +60,52 @@ func (s *scanner) scan() (off int, tok token, lit string) {
 		case '.':
 			tok = DOT
 		case '=':
-			tok = ASSIGN
+			if s.ch == '=' {
+				s.next()
+				tok = EQ
+			} else {
+				tok = ASSIGN
+			}
 		case '~':
 			tok = TEST
+		case '+':
+			tok = ADD
 		case '-':
 			tok = SUB
+		case '*':
+			tok = MUL
+		case '/':
+			tok = QUO
+		case '%':
+			tok = REM
+		case '!':
+			if s.ch == '=' {
+				s.next()
+				tok = NE
+			} else {
+				tok = NOT
+			}
+		case '&':
+			if s.ch == '&' {
+				s.next()
+				tok = AND
+				break
+			}
+			s.error(off, "expected '&&'")
+		case '|':
+			if s.ch == '|' {
+				s.next()
+				tok = OR
+				break
+			}
+			s.error(off, "expected '||'")
 		case '<':
-			tok = LT
+			if s.ch == '=' {
+				s.next()
+				tok = LE
+			} else {
+				tok = LT
+			}
 		case '>':
 			if s.ch == '=' {
 				s.next()

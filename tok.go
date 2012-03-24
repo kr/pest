@@ -59,6 +59,8 @@ var tokname = map[token]string {
 	LE: "LE",
 	GE: "GE",
 	DOT: "DOT",
+	OR: "OR",
+	AND: "AND",
 }
 
 func (t token) String() string {
