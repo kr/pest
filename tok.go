@@ -32,6 +32,8 @@ const (
 	DOT // .
 	OR // ||
 	AND // &&
+	LPAREN // (
+	RPAREN // (
 	ntoken
 )
 
@@ -61,6 +63,8 @@ var tokname = map[token]string {
 	DOT: "DOT",
 	OR: "OR",
 	AND: "AND",
+	LPAREN: "LPAREN",
+	RPAREN: "RPAREN",
 }
 
 func (t token) String() string {

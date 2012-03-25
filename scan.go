@@ -54,6 +54,10 @@ func (s *scanner) scan() (off int, tok token, lit string) {
 		case '}':
 			tok = TCONT
 			lit = s.scanTPart()
+		case '(':
+			tok = LPAREN
+		case ')':
+			tok = RPAREN
 		case '"':
 			tok = STRING
 			lit = s.scanString()

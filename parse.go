@@ -211,6 +211,9 @@ func (p *parser) atomParse() expr {
 			e = concat{concat{e, mid}, val}
 		}
 		return concat{e, str("\r\n")}
+	case LPAREN:
+		defer p.consume(RPAREN)
+		return p.assignParse()
 	}
 	p.error(off, "unexpected ", tok)
 	return nil
