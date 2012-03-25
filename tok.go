@@ -33,7 +33,7 @@ const (
 	OR // ||
 	AND // &&
 	LPAREN // (
-	RPAREN // (
+	RPAREN // )
 	ntoken
 )
 
