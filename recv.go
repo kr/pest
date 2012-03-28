@@ -8,7 +8,7 @@ import (
 import "fmt"
 
 type recv struct {
-	x expr
+	x   expr
 	src string
 }
 
@@ -29,7 +29,6 @@ func (r recv) eval(e *env) val {
 
 	return str(s)
 }
-
 
 func readLine(r io.Reader) (string, error) {
 	var buf []byte

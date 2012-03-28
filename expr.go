@@ -19,7 +19,6 @@ func (s seq) eval(e *env) val {
 	return nil
 }
 
-
 type or struct {
 	l, r expr
 }
@@ -28,7 +27,6 @@ func (o or) eval(e *env) val {
 	return nil
 }
 
-
 type and struct {
 	l, r expr
 }
@@ -36,7 +34,6 @@ type and struct {
 func (a and) eval(e *env) val {
 	return nil
 }
-
 
 type not struct {
 	x expr
@@ -47,7 +44,7 @@ func (n not) eval(e *env) val {
 }
 
 type test struct {
-	x expr
+	x   expr
 	src string
 }
 
@@ -66,7 +63,6 @@ func (q eq) eval(e *env) val {
 	return nil
 }
 
-
 type gt struct {
 	l, r expr
 }
@@ -75,7 +71,6 @@ func (g gt) eval(e *env) val {
 	return nil
 }
 
-
 type lt struct {
 	l, r expr
 }
@@ -83,7 +78,6 @@ type lt struct {
 func (l lt) eval(e *env) val {
 	return boolean(l.l.eval(e).Int() < l.r.eval(e).Int())
 }
-
 
 type add struct {
 	a, b expr
@@ -139,7 +133,6 @@ func (i ident) eval(e *env) val {
 	}
 	return v
 }
-
 
 type concat struct {
 	a, b expr

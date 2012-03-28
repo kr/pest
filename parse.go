@@ -20,7 +20,7 @@ type parser struct {
 
 type stmt struct {
 	tok token
-	e expr
+	e   expr
 }
 
 func (p *parser) init(src []byte) {
@@ -220,7 +220,7 @@ func (p *parser) atomParse() expr {
 }
 
 func tconv(lit string) (val str, cont bool) {
-	return str(lit[1:len(lit)-1]), lit[len(lit) - 1] == '{'
+	return str(lit[1 : len(lit)-1]), lit[len(lit)-1] == '{'
 }
 
 func intconv(lit string) num {

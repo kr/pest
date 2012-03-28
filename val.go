@@ -4,7 +4,7 @@ import (
 	"strconv"
 )
 
-type val interface{
+type val interface {
 	String() string
 	Int() int64
 	Bool() bool

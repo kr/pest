@@ -21,4 +21,3 @@ func (s send) eval(e *env) val {
 	fmt.Printf(">%q\n", v)
 	return str(v)
 }
-

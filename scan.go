@@ -18,11 +18,11 @@ type scannerError struct {
 }
 
 type scanner struct {
-	src []byte
-	ch  rune
-	off int
+	src     []byte
+	ch      rune
+	off     int
 	offNext int
-	err []scannerError
+	err     []scannerError
 }
 
 func (s *scanner) init(src []byte) {

@@ -7,7 +7,7 @@ import (
 type env struct {
 	conn net.Conn
 	tab  map[ident]val
-	dot *string
+	dot  *string
 }
 
 func (e *env) withDot(s *string) (n *env) {
